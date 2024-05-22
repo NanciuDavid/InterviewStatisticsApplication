@@ -41,28 +41,46 @@ namespace PROIECTWAP
                     currentButton = (Button)btnSender;
                     currentButton.BackColor = color;
                     currentButton.ForeColor = Color.White;
-                    currentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.55F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    currentButton.Font = new System.Drawing.Font("Montserrat", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
         }
 
         private void DisableButton()
         {
-            foreach (Control control in Controls)
+            foreach (Control previousBtn in panelMenu.Controls)
             {
-                if (control.GetType() == typeof(Button))
+                if (previousBtn.GetType() == typeof(Button))
                 {
-                    control.BackColor = Color.FromArgb(51, 51, 76);
-                    control.ForeColor = Color.Gainsboro;
-                    control.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    previousBtn.BackColor = Color.FromArgb(51, 51, 76);
+                    previousBtn.ForeColor = Color.Gainsboro;
+                    previousBtn.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
-            currentButton = null;
         }
 
         private Form activeForm = null;
-     
 
-       
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+          ActivateButton(sender);
+           
+        }
+
+        private void btnAnalysis_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+        }
+
+        private void btnInterview_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+        }
+
+        private void btnPerson_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+        }
+
     }
 }

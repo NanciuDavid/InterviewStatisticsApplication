@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panelMenu = new Panel();
-            panelLogo = new Panel();
-            btnPerson = new Button();
-            btnInterview = new Button();
-            btnAnalysis = new Button();
             btnDashboard = new Button();
+            btnAnalysis = new Button();
+            btnInterview = new Button();
+            btnPerson = new Button();
+            panelLogo = new Panel();
             panelMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,75 +52,12 @@
             panelMenu.Size = new Size(220, 536);
             panelMenu.TabIndex = 0;
             // 
-            // panelLogo
-            // 
-            panelLogo.BackColor = Color.FromArgb(39, 39, 58);
-            panelLogo.Dock = DockStyle.Top;
-            panelLogo.Location = new Point(0, 0);
-            panelLogo.Name = "panelLogo";
-            panelLogo.Padding = new Padding(12, 0, 0, 0);
-            panelLogo.Size = new Size(220, 80);
-            panelLogo.TabIndex = 0;
-            // 
-            // btnPerson
-            // 
-            btnPerson.Dock = DockStyle.Top;
-            btnPerson.FlatAppearance.BorderSize = 0;
-            btnPerson.FlatStyle = FlatStyle.Flat;
-            btnPerson.ForeColor = Color.White;
-            btnPerson.Image = Properties.Resources.user__1_;
-            btnPerson.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPerson.Location = new Point(0, 80);
-            btnPerson.Name = "btnPerson";
-            btnPerson.Padding = new Padding(12, 0, 0, 0);
-            btnPerson.Size = new Size(220, 60);
-            btnPerson.TabIndex = 0;
-            btnPerson.Text = "    Person";
-            btnPerson.TextAlign = ContentAlignment.MiddleLeft;
-            btnPerson.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnPerson.UseVisualStyleBackColor = true;
-            // 
-            // btnInterview
-            // 
-            btnInterview.Dock = DockStyle.Top;
-            btnInterview.FlatAppearance.BorderSize = 0;
-            btnInterview.FlatStyle = FlatStyle.Flat;
-            btnInterview.ForeColor = Color.White;
-            btnInterview.Image = (Image)resources.GetObject("btnInterview.Image");
-            btnInterview.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInterview.Location = new Point(0, 140);
-            btnInterview.Name = "btnInterview";
-            btnInterview.Padding = new Padding(12, 0, 0, 0);
-            btnInterview.Size = new Size(220, 60);
-            btnInterview.TabIndex = 1;
-            btnInterview.Text = "    Interview";
-            btnInterview.TextAlign = ContentAlignment.MiddleLeft;
-            btnInterview.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnInterview.UseVisualStyleBackColor = true;
-            // 
-            // btnAnalysis
-            // 
-            btnAnalysis.Dock = DockStyle.Top;
-            btnAnalysis.FlatAppearance.BorderSize = 0;
-            btnAnalysis.FlatStyle = FlatStyle.Flat;
-            btnAnalysis.ForeColor = Color.White;
-            btnAnalysis.Image = (Image)resources.GetObject("btnAnalysis.Image");
-            btnAnalysis.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAnalysis.Location = new Point(0, 200);
-            btnAnalysis.Name = "btnAnalysis";
-            btnAnalysis.Padding = new Padding(12, 0, 0, 0);
-            btnAnalysis.Size = new Size(220, 60);
-            btnAnalysis.TabIndex = 2;
-            btnAnalysis.Text = "    Analysis Results";
-            btnAnalysis.TextAlign = ContentAlignment.MiddleLeft;
-            btnAnalysis.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnAnalysis.UseVisualStyleBackColor = true;
-            // 
             // btnDashboard
             // 
             btnDashboard.Dock = DockStyle.Top;
             btnDashboard.FlatAppearance.BorderSize = 0;
             btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Montserrat", 12F, FontStyle.Bold);
             btnDashboard.ForeColor = Color.White;
             btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
@@ -133,6 +70,77 @@
             btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
             btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDashboard.UseVisualStyleBackColor = true;
+            btnDashboard.Click += btnDashboard_Click;
+            // 
+            // btnAnalysis
+            // 
+            btnAnalysis.Dock = DockStyle.Top;
+            btnAnalysis.FlatAppearance.BorderSize = 0;
+            btnAnalysis.FlatStyle = FlatStyle.Flat;
+            btnAnalysis.Font = new Font("Montserrat", 12F, FontStyle.Bold);
+            btnAnalysis.ForeColor = Color.White;
+            btnAnalysis.Image = (Image)resources.GetObject("btnAnalysis.Image");
+            btnAnalysis.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAnalysis.Location = new Point(0, 200);
+            btnAnalysis.Name = "btnAnalysis";
+            btnAnalysis.Padding = new Padding(12, 0, 0, 0);
+            btnAnalysis.Size = new Size(220, 60);
+            btnAnalysis.TabIndex = 2;
+            btnAnalysis.Text = "    Results";
+            btnAnalysis.TextAlign = ContentAlignment.MiddleLeft;
+            btnAnalysis.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAnalysis.UseVisualStyleBackColor = true;
+            btnAnalysis.Click += btnAnalysis_Click;
+            // 
+            // btnInterview
+            // 
+            btnInterview.Dock = DockStyle.Top;
+            btnInterview.FlatAppearance.BorderSize = 0;
+            btnInterview.FlatStyle = FlatStyle.Flat;
+            btnInterview.Font = new Font("Montserrat", 12F, FontStyle.Bold);
+            btnInterview.ForeColor = Color.White;
+            btnInterview.Image = (Image)resources.GetObject("btnInterview.Image");
+            btnInterview.ImageAlign = ContentAlignment.MiddleLeft;
+            btnInterview.Location = new Point(0, 140);
+            btnInterview.Name = "btnInterview";
+            btnInterview.Padding = new Padding(12, 0, 0, 0);
+            btnInterview.Size = new Size(220, 60);
+            btnInterview.TabIndex = 1;
+            btnInterview.Text = "    Interview";
+            btnInterview.TextAlign = ContentAlignment.MiddleLeft;
+            btnInterview.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnInterview.UseVisualStyleBackColor = true;
+            btnInterview.Click += btnInterview_Click;
+            // 
+            // btnPerson
+            // 
+            btnPerson.Dock = DockStyle.Top;
+            btnPerson.FlatAppearance.BorderSize = 0;
+            btnPerson.FlatStyle = FlatStyle.Flat;
+            btnPerson.Font = new Font("Montserrat", 12F, FontStyle.Bold);
+            btnPerson.ForeColor = Color.White;
+            btnPerson.Image = Properties.Resources.user__1_;
+            btnPerson.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPerson.Location = new Point(0, 80);
+            btnPerson.Name = "btnPerson";
+            btnPerson.Padding = new Padding(12, 0, 0, 0);
+            btnPerson.Size = new Size(220, 60);
+            btnPerson.TabIndex = 0;
+            btnPerson.Text = "    Person";
+            btnPerson.TextAlign = ContentAlignment.MiddleLeft;
+            btnPerson.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnPerson.UseVisualStyleBackColor = true;
+            btnPerson.Click += btnPerson_Click;
+            // 
+            // panelLogo
+            // 
+            panelLogo.BackColor = Color.FromArgb(39, 39, 58);
+            panelLogo.Dock = DockStyle.Top;
+            panelLogo.Location = new Point(0, 0);
+            panelLogo.Name = "panelLogo";
+            panelLogo.Padding = new Padding(12, 0, 0, 0);
+            panelLogo.Size = new Size(220, 80);
+            panelLogo.TabIndex = 0;
             // 
             // Form1
             // 
