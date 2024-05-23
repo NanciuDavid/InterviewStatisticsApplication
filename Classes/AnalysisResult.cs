@@ -9,6 +9,7 @@ namespace PROIECTWAP.Classes
     internal class AnalysisResult
     {
 
+        private String department; // department of the analysis
         private int _totalInterviews; // total number of interviews
         private int _totalAccepted; // total number of accepted interviews
         private int _totalRejected; // total number of rejected interviews

@@ -47,8 +47,9 @@ namespace PROIECTWAP
                     panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
                     ThemeColor.PrimaryColor = color;
                     ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
+                    btnCloseChild.Visible = true;
                 }
-                }
+            }
         }
 
         private void DisableButton()
@@ -111,15 +112,47 @@ namespace PROIECTWAP
 
         private void githubPicture_Click(object sender, EventArgs e)
         {
-          
+
             string githubUrl = "https://github.com/NanciuDavid";
 
-           
+
             Process.Start(new ProcessStartInfo
             {
                 FileName = githubUrl,
                 UseShellExecute = true
             });
+        }
+
+        private void btnCloseChild_Click(object sender, EventArgs e)
+        {
+            if(activeForm!=null)
+            {
+                activeForm.Close();
+            }
+            Reset();
+        }
+
+        private void Reset()
+        {
+            DisableButton();
+            lblTitle.Text = "HOME";
+            panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
+            panelLogo.BackColor = Color.FromArgb(39, 39, 58);
+            currentButton = null;
+            ThemeColor.PrimaryColor = Color.FromArgb(0, 150, 136);
+            ThemeColor.SecondaryColor = Color.FromArgb(0, 150, 136);
+        }
+
+        //create alt-shortcut for btnCloseChild
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Alt | Keys.C))
+            {
+                btnCloseChild.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

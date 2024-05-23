@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROIECTWAP.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,22 @@ namespace PROIECTWAP.Forms
         public InterviewForm()
         {
             InitializeComponent();
+            LoadTheme();
         }
 
-       
+        private void LoadTheme()
+        {
+            foreach (Control btns in this.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button button = (Button)btns;
+                    button.BackColor = ThemeColor.PrimaryColor;
+                    button.ForeColor = Color.White;
+                    button.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+                label5.ForeColor = ThemeColor.SecondaryColor;
+            }
+        }
     }
 }

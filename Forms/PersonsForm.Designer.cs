@@ -50,7 +50,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(68, 76);
+            label1.Location = new Point(79, 80);
             label1.Name = "label1";
             label1.Size = new Size(59, 22);
             label1.TabIndex = 0;
@@ -103,7 +103,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(52, 173);
+            label3.Location = new Point(63, 172);
             label3.Name = "label3";
             label3.Size = new Size(75, 22);
             label3.TabIndex = 7;
@@ -157,7 +157,7 @@
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(454, 55);
+            dataGridView1.Location = new Point(455, 53);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(362, 282);
             dataGridView1.TabIndex = 13;

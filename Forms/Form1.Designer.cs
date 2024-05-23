@@ -37,12 +37,16 @@
             panelLogo = new Panel();
             githubPicture = new PictureBox();
             panelTitleBar = new Panel();
+            btnCloseChild = new Button();
             lblTitle = new Label();
             panelDesktop = new Panel();
+            pictureBox1 = new PictureBox();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)githubPicture).BeginInit();
             panelTitleBar.SuspendLayout();
+            panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panelMenu
@@ -165,12 +169,26 @@
             // panelTitleBar
             // 
             panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
+            panelTitleBar.Controls.Add(btnCloseChild);
             panelTitleBar.Controls.Add(lblTitle);
             panelTitleBar.Dock = DockStyle.Top;
             panelTitleBar.Location = new Point(220, 0);
             panelTitleBar.Name = "panelTitleBar";
             panelTitleBar.Size = new Size(628, 80);
             panelTitleBar.TabIndex = 1;
+            // 
+            // btnCloseChild
+            // 
+            btnCloseChild.Dock = DockStyle.Left;
+            btnCloseChild.FlatAppearance.BorderSize = 0;
+            btnCloseChild.FlatStyle = FlatStyle.Flat;
+            btnCloseChild.Image = (Image)resources.GetObject("btnCloseChild.Image");
+            btnCloseChild.Location = new Point(0, 0);
+            btnCloseChild.Name = "btnCloseChild";
+            btnCloseChild.Size = new Size(75, 80);
+            btnCloseChild.TabIndex = 1;
+            btnCloseChild.UseVisualStyleBackColor = true;
+            btnCloseChild.Click += btnCloseChild_Click;
             // 
             // lblTitle
             // 
@@ -186,11 +204,23 @@
             // 
             // panelDesktop
             // 
+            panelDesktop.Controls.Add(pictureBox1);
             panelDesktop.Dock = DockStyle.Fill;
             panelDesktop.Location = new Point(220, 80);
             panelDesktop.Name = "panelDesktop";
             panelDesktop.Size = new Size(628, 456);
             panelDesktop.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(108, 60);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(409, 307);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // Form1
             // 
@@ -210,6 +240,8 @@
             ((System.ComponentModel.ISupportInitialize)githubPicture).EndInit();
             panelTitleBar.ResumeLayout(false);
             panelTitleBar.PerformLayout();
+            panelDesktop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -226,5 +258,7 @@
         private Label lblTitle;
         private PictureBox githubPicture;
         private Panel panelDesktop;
+        private Button btnCloseChild;
+        private PictureBox pictureBox1;
     }
 }
