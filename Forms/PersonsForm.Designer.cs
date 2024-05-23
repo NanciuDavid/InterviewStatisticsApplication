@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             btnUpdate = new Button();
             textBox1 = new TextBox();
@@ -41,11 +42,12 @@
             label5 = new Label();
             dataGridView1 = new DataGridView();
             btnDelete = new Button();
-            btnClear = new Button();
+            btnDeserialize = new Button();
             btnSave = new Button();
             textBox4 = new TextBox();
             label6 = new Label();
             label7 = new Label();
+            btnAdd = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -158,8 +160,18 @@
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Montserrat", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.Location = new Point(455, 53);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(362, 282);
@@ -176,18 +188,20 @@
             btnDelete.TabIndex = 14;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click_1;
             // 
-            // btnClear
+            // btnDeserialize
             // 
-            btnClear.Anchor = AnchorStyles.Bottom;
-            btnClear.FlatStyle = FlatStyle.Flat;
-            btnClear.Font = new Font("Montserrat", 9.749999F);
-            btnClear.Location = new Point(591, 377);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(92, 39);
-            btnClear.TabIndex = 15;
-            btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = true;
+            btnDeserialize.Anchor = AnchorStyles.Bottom;
+            btnDeserialize.FlatStyle = FlatStyle.Flat;
+            btnDeserialize.Font = new Font("Montserrat", 9.749999F);
+            btnDeserialize.Location = new Point(591, 377);
+            btnDeserialize.Name = "btnDeserialize";
+            btnDeserialize.Size = new Size(92, 39);
+            btnDeserialize.TabIndex = 15;
+            btnDeserialize.Text = "Deserialize";
+            btnDeserialize.UseVisualStyleBackColor = true;
+            btnDeserialize.Click += btnDeserialize_Click;
             // 
             // btnSave
             // 
@@ -200,6 +214,7 @@
             btnSave.TabIndex = 16;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // textBox4
             // 
@@ -227,17 +242,30 @@
             label7.TabIndex = 19;
             label7.Text = "Age";
             // 
+            // btnAdd
+            // 
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Montserrat", 9.749999F);
+            btnAdd.Location = new Point(354, 137);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(92, 39);
+            btnAdd.TabIndex = 20;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
             // PersonsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(231, 232, 209);
             ClientSize = new Size(844, 457);
+            Controls.Add(btnAdd);
             Controls.Add(label7);
             Controls.Add(textBox4);
             Controls.Add(label6);
             Controls.Add(btnSave);
-            Controls.Add(btnClear);
+            Controls.Add(btnDeserialize);
             Controls.Add(btnDelete);
             Controls.Add(dataGridView1);
             Controls.Add(label5);
@@ -274,10 +302,11 @@
         private Label label5;
         private DataGridView dataGridView1;
         private Button btnDelete;
-        private Button btnClear;
+        private Button btnDeserialize;
         private Button btnSave;
         private TextBox textBox4;
         private Label label6;
         private Label label7;
+        private Button btnAdd;
     }
 }

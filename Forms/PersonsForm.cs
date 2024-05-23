@@ -1,64 +1,168 @@
 ﻿using PROIECTWAP.Classes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PROIECTWAP.Forms
 {
-
     public partial class PersonsForm : Form
     {
         private List<Person> people;
+
         public PersonsForm()
         {
             InitializeComponent();
             LoadTheme();
             people = new List<Person>();
+            InitializeDataGridView();
+            LoadPeople();
         }
 
         private void LoadTheme()
         {
             foreach (Control btns in this.Controls)
             {
-                if (btns.GetType() == typeof(Button))
+                if (btns is Button button)
                 {
-                    Button button = (Button)btns;
                     button.BackColor = ThemeColor.PrimaryColor;
                     button.ForeColor = Color.White;
                     button.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
                 }
+            }
+            if (label5 != null)
+            {
                 label5.ForeColor = ThemeColor.SecondaryColor;
             }
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void InitializeDataGridView()
         {
+            dataGridView1.AutoGenerateColumns = false;
 
+            // Create and add columns
+            DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Name",
+                HeaderText = "Name"
+            };
+            dataGridView1.Columns.Add(nameColumn);
+
+            DataGridViewTextBoxColumn phoneColumn = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "PhoneNumber",
+                HeaderText = "Phone"
+            };
+            dataGridView1.Columns.Add(phoneColumn);
+
+            DataGridViewTextBoxColumn addressColumn = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Address",
+                HeaderText = "Address"
+            };
+            dataGridView1.Columns.Add(addressColumn);
+
+            DataGridViewTextBoxColumn ageColumn = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Age",
+                HeaderText = "Age"
+            };
+            dataGridView1.Columns.Add(ageColumn);
+
+            DataGridViewTextBoxColumn genderColumn = new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "Gender",
+                HeaderText = "Gender"
+            };
+            dataGridView1.Columns.Add(genderColumn);
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Create a new person from the input data
-            Person person = new Person
+            // Data validation
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text) || (!radioButton1.Checked && !radioButton2.Checked))
+            {
+                MessageBox.Show("Please fill all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Age validation
+            if (int.Parse(textBox4.Text) < 18)
+            {
+                MessageBox.Show("Age must be greater than 18", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Add a new person to the list
+            people.Add(new Person
             {
                 Name = textBox1.Text,
                 PhoneNumber = textBox2.Text,
                 Address = textBox3.Text,
                 Age = int.Parse(textBox4.Text),
-                Gender = radioButton1.Checked ? "Male" : "Female"
-            };
+                Gender = radioButton1.Checked ? "Male" : "Female",
+            });
 
-            // Add the person to the list
-            people.Add(person);
             // Refresh the DataGridView
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = people;
+
+            // Clear the text boxes
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+
+            // Focus the first text box
+            textBox1.Focus();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Serialization.SerializeBinary(people);
+            Serialization.SerializeXML(people);
+            MessageBox.Show("Data saved successfully in binary and xml.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void LoadPeople()
+        {
+            people = Serialization.DeserializeBinary();
+            if (people.Count == 0)
+            {
+                people = Serialization.DeserializeXML();
+            }
+            dataGridView1.DataSource = people;
+        }
+
+        private void btnDeserialize_Click(object sender, EventArgs e)
+        {
+            //deserialize the data
+            people = Serialization.DeserializeBinary();
+            if (people.Count == 0)
+            {
+                people = Serialization.DeserializeXML();
+            }
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = people;
+
+        }
+
+        private void btnDelete_Click_1(object sender, EventArgs e)
+        {
+            //delete the selected row
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                people.RemoveAt(dataGridView1.SelectedRows[0].Index);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = people;
+            }
         }
     }
 }

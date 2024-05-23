@@ -1,58 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace PROIECTWAP.Classes
 {
-    internal class Person
+    [Serializable]
+     public class Person : INotifyPropertyChanged
     {
         private string _name;
         private string _phoneNumber;
         private string _gender;
         private int _age;
-        private String _address;
+        private string _address;
 
         public Person()
         {
         }
 
-        public Person(string name, string phoneNumber, string gender, int age, string address          )
+        public Person(string name, string phoneNumber, string address, int age, string gender)
         {
             _name = name;
             _phoneNumber = phoneNumber;
-            _gender = gender;
-            _age = age;
             _address = address;
+            _age = age;
+            _gender = gender;
         }
 
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = value; OnPropertyChanged(nameof(Name)); }
         }
+
         public string PhoneNumber
         {
             get { return _phoneNumber; }
-            set { _phoneNumber = value; }
+            set { _phoneNumber = value; OnPropertyChanged(nameof(PhoneNumber)); }
         }
+
         public string Gender
         {
             get { return _gender; }
-            set { _gender = value; }
+            set { _gender = value; OnPropertyChanged(nameof(Gender)); }
         }
 
         public int Age
         {
             get { return _age; }
-            set { _age = value; }
+            set { _age = value; OnPropertyChanged(nameof(Age)); }
         }
 
-        public String Address
+        public string Address
         {
             get { return _address; }
-            set { _address = value; }
+            set { _address = value; OnPropertyChanged(nameof(Address)); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
