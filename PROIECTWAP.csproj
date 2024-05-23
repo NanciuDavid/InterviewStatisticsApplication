@@ -23,4 +23,43 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\nanci\OneDrive\Desktop\PAWPROJECT\PROIECTWAP\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net8.0-windows\Interviews.txt" />
+    <Content Include="bin\Debug\net8.0-windows\interviews.xml" />
+    <Content Include="bin\Debug\net8.0-windows\people.xml" />
+    <Content Include="bin\Debug\net8.0-windows\personsExport.txt" />
+    <Content Include="bin\Debug\net8.0-windows\PROIECTWAP.deps.json" />
+    <Content Include="bin\Debug\net8.0-windows\PROIECTWAP.runtimeconfig.json" />
+    <Content Include="bin\Debug\net8.0-windows\results.txt" />
+    <Content Include="bin\Debug\net8.0-windows\results.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0-windows\Dapper.dll" />
+    <None Include="bin\Debug\net8.0-windows\DemoDB" />
+    <None Include="bin\Debug\net8.0-windows\DemoDB.db" />
+    <None Include="bin\Debug\net8.0-windows\interviews.dat" />
+    <None Include="bin\Debug\net8.0-windows\people.dat" />
+    <None Include="bin\Debug\net8.0-windows\PROIECTWAP.dll" />
+    <None Include="bin\Debug\net8.0-windows\PROIECTWAP.dll.config" />
+    <None Include="bin\Debug\net8.0-windows\PROIECTWAP.exe" />
+    <None Include="bin\Debug\net8.0-windows\PROIECTWAP.pdb" />
+    <None Include="bin\Debug\net8.0-windows\results.dat" />
+    <None Include="bin\Debug\net8.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll" />
+    <None Include="bin\Debug\net8.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll" />
+    <None Include="bin\Debug\net8.0-windows\runtimes\win-x64\native\SQLite.Interop.dll" />
+    <None Include="bin\Debug\net8.0-windows\runtimes\win-x86\native\SQLite.Interop.dll" />
+    <None Include="bin\Debug\net8.0-windows\System.Data.SQLite.dll" />
+    <None Include="C:\Users\nanci\OneDrive\Desktop\PAWPROJECT\PROIECTWAP\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+  </ItemGroup>
+
 </Project>

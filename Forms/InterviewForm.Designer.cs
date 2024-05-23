@@ -47,7 +47,11 @@
             dateTimePicker1 = new DateTimePicker();
             label7 = new Label();
             btnAdd = new Button();
+            menuStrip1 = new MenuStrip();
+            exportToolStripMenuItem = new ToolStripMenuItem();
+            importDataBaseToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -240,7 +244,7 @@
             // 
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Montserrat", 9.749999F);
-            btnAdd.Location = new Point(354, 137);
+            btnAdd.Location = new Point(359, 136);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(92, 39);
             btnAdd.TabIndex = 34;
@@ -248,12 +252,40 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.BackColor = Color.FromArgb(51, 51, 76);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { exportToolStripMenuItem, importDataBaseToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(844, 24);
+            menuStrip1.TabIndex = 36;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // exportToolStripMenuItem
+            // 
+            exportToolStripMenuItem.Font = new Font("Montserrat", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            exportToolStripMenuItem.ForeColor = Color.White;
+            exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            exportToolStripMenuItem.Size = new Size(59, 20);
+            exportToolStripMenuItem.Text = "Export";
+            exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
+            // 
+            // importDataBaseToolStripMenuItem
+            // 
+            importDataBaseToolStripMenuItem.Font = new Font("Montserrat", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            importDataBaseToolStripMenuItem.ForeColor = Color.White;
+            importDataBaseToolStripMenuItem.Name = "importDataBaseToolStripMenuItem";
+            importDataBaseToolStripMenuItem.Size = new Size(123, 20);
+            importDataBaseToolStripMenuItem.Text = "Import DataBase";
+            // 
             // InterviewForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(231, 232, 209);
             ClientSize = new Size(844, 457);
+            Controls.Add(menuStrip1);
             Controls.Add(btnAdd);
             Controls.Add(label7);
             Controls.Add(dateTimePicker1);
@@ -277,6 +309,8 @@
             Name = "InterviewForm";
             Text = "InterviewForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -302,5 +336,8 @@
         private DateTimePicker dateTimePicker1;
         private Label label7;
         private Button btnAdd;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem importDataBaseToolStripMenuItem;
     }
 }

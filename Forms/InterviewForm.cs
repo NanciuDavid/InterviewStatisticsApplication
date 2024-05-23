@@ -1,4 +1,4 @@
-﻿    using PROIECTWAP.Classes;
+﻿using PROIECTWAP.Classes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,6 +9,8 @@ namespace PROIECTWAP.Forms
     public partial class InterviewForm : Form
     {
         private List<Interview> interviews;
+        static string dbFilePath = "DemoDB.db";
+        private static SqliteDataAccess dataAccess = new SqliteDataAccess(dbFilePath);
 
         public InterviewForm()
         {
@@ -43,7 +45,8 @@ namespace PROIECTWAP.Forms
 
         private void InitializeDataGridView()
         {
-            dataGridView1.AutoGenerateColumns = false;
+            // Clear existing columns
+            dataGridView1.Columns.Clear();
 
             // Create and add columns
             DataGridViewTextBoxColumn idColumn = new DataGridViewTextBoxColumn
@@ -80,6 +83,9 @@ namespace PROIECTWAP.Forms
                 HeaderText = "Result"
             };
             dataGridView1.Columns.Add(resultColumn);
+
+            // Bind DataGridView to List<Interview>
+            dataGridView1.DataSource = interviews;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -107,6 +113,11 @@ namespace PROIECTWAP.Forms
                     Location = interviewLocation,
                     Result = interviewResult
                 };
+
+                //add the interview to the database
+                dataAccess.InsertInterview(newInterview);
+
+
                 interviews.Add(newInterview);
 
                 // Refresh the DataGridView
@@ -218,5 +229,25 @@ namespace PROIECTWAP.Forms
             LoadInterviews();
             MessageBox.Show("Data reloaded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        // exportToolStripMenuItem.Click to a file .txt called Interviews.txt
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = "Interviews.txt";
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path))
+            {
+                foreach (Interview interview in interviews)
+                {
+                    file.WriteLine("ID: " + interview.ID);
+                    file.WriteLine("Duration: " + interview.Duration);
+                    file.WriteLine("Time: " + interview.Time);
+                    file.WriteLine("Location: " + interview.Location);
+                    file.WriteLine("Result: " + interview.Result);
+                    file.WriteLine();
+                }
+            }
+            MessageBox.Show("Data exported successfully to Interviews.txt.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }

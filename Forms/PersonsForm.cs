@@ -2,14 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 
 namespace PROIECTWAP.Forms
 {
     public partial class PersonsForm : Form
     {
+        static string dbFilePath = "\"DemoDB.db\"";
+        private static SqliteDataAccess dataAccess = new SqliteDataAccess(dbFilePath);
         private List<Person> people;
 
+        private PrintDocument printDocument;
         public PersonsForm()
         {
             InitializeComponent();
@@ -43,7 +47,8 @@ namespace PROIECTWAP.Forms
 
         private void InitializeDataGridView()
         {
-            dataGridView1.AutoGenerateColumns = false;
+            // Clear existing columns
+            dataGridView1.Columns.Clear();
 
             // Create and add columns
             DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn
@@ -80,6 +85,9 @@ namespace PROIECTWAP.Forms
                 HeaderText = "Gender"
             };
             dataGridView1.Columns.Add(genderColumn);
+
+            // Bind DataGridView to BindingList
+            dataGridView1.DataSource = people;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -107,6 +115,11 @@ namespace PROIECTWAP.Forms
                 Age = int.Parse(textBox4.Text),
                 Gender = radioButton1.Checked ? "Male" : "Female",
             });
+
+            //store again values and introduce in db with var result 
+            var result = new Person(textBox1.Text, textBox2.Text, textBox3.Text, int.Parse(textBox4.Text), radioButton1.Checked ? "Male" : "Female");
+            dataAccess.InsertPerson(result);
+
 
             // Refresh the DataGridView
             dataGridView1.DataSource = null;
@@ -194,7 +207,7 @@ namespace PROIECTWAP.Forms
             };
         }
 
-   
+
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -207,6 +220,25 @@ namespace PROIECTWAP.Forms
             }
             MessageBox.Show("Data exported successfully to text file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-       
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Show print dialog to select printer and print settings
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDocument;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Start printing process
+                printDocument.Print();
+            }
+        }
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            // Draw the content of the form onto the print document
+            // For example, you can draw the DataGridView content
+            // Here's a simple example assuming dataGridView1 is your DataGridView
+            dataGridView1.DrawToBitmap(new Bitmap(dataGridView1.Width, dataGridView1.Height), new Rectangle(0, 0, dataGridView1.Width, dataGridView1.Height));
+        }
     }
 }

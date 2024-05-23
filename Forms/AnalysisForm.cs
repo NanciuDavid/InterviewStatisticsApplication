@@ -8,7 +8,9 @@ namespace PROIECTWAP.Forms
 {
     public partial class AnalysisForm : Form
     {
-        private List<AnalysisResult> results = new List<AnalysisResult>();
+        public List<AnalysisResult> results = new List<AnalysisResult>();
+        static string dbFilePath = "\"DemoDB.db\"";
+        private static SqliteDataAccess dataAccess = new SqliteDataAccess(dbFilePath);
 
         public AnalysisForm()
         {
@@ -46,6 +48,7 @@ namespace PROIECTWAP.Forms
         {
             dataGridView1.AutoGenerateColumns = false;
 
+            // Create and add columns
             var departmentColumn = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Department",
@@ -99,6 +102,21 @@ namespace PROIECTWAP.Forms
                     TotalRejected = interviewsFailed
                 };
 
+                double acceptanceRate = (double)interviewsPassed / totalInterviews;
+                double rejectionRate = (double)interviewsFailed / totalInterviews;
+
+                var resultdb = new AnalysisResult
+                {
+                    Department = department,
+                    TotalInterviews = totalInterviews,
+                    TotalAccepted = interviewsPassed,
+                    TotalRejected = interviewsFailed,
+                    AcceptanceRate = acceptanceRate,
+                    RejectionRate = rejectionRate
+                };
+
+                dataAccess.InsertAnalysisResult(resultdb);
+
                 results.Add(result);
 
                 // Refresh the DataGridView
@@ -116,6 +134,7 @@ namespace PROIECTWAP.Forms
                 MessageBox.Show("Please enter valid data: " + ex.Message);
             }
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -222,6 +241,22 @@ namespace PROIECTWAP.Forms
             MessageBox.Show("Data loaded successfully from binary and XML formats.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = results;
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //export to .txt file data from dataGridView1 in a file called "results.txt"
+            string path = "results.txt";
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path
+                ))
+            {
+                foreach (AnalysisResult result in results)
+                {
+                    file.WriteLine(result.Department + " " + result.TotalInterviews + " " + result.TotalAccepted + " " + result.TotalRejected);
+                }
+            }
+            MessageBox.Show("Data exported successfully to results.txt", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }
