@@ -126,17 +126,17 @@ namespace PROIECTWAP.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Serialization.SerializeBinary(people);
-            Serialization.SerializeXML(people);
+            Serialization.SerializeBinary(people, "people.dat");
+            Serialization.SerializeXML(people, "people.xml");
             MessageBox.Show("Data saved successfully in binary and xml.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LoadPeople()
         {
-            people = Serialization.DeserializeBinary();
+            people = Serialization.DeserializeBinary<Person>("people.dat");
             if (people.Count == 0)
             {
-                people = Serialization.DeserializeXML();
+                people = Serialization.DeserializeXML<Person>("people.xml");
             }
             dataGridView1.DataSource = people;
         }
@@ -144,14 +144,14 @@ namespace PROIECTWAP.Forms
         private void btnDeserialize_Click(object sender, EventArgs e)
         {
             //deserialize the data
-            people = Serialization.DeserializeBinary();
+            people = Serialization.DeserializeBinary<Person>("people.dat");
             if (people.Count == 0)
             {
-                people = Serialization.DeserializeXML();
+                people = Serialization.DeserializeXML<Person>("people.xml");
             }
+            MessageBox.Show("Data exported successfully from binary and xml.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = people;
-
         }
 
         private void btnDelete_Click_1(object sender, EventArgs e)
@@ -163,6 +163,35 @@ namespace PROIECTWAP.Forms
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = people;
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+          //update data
+
+          if (dataGridView1.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int selectedIndex = dataGridView1.SelectedRows[0].Index;
+                    if (selectedIndex >= 0 && selectedIndex < people.Count)
+                    {
+                        people[selectedIndex].Name = textBox1.Text;
+                        people[selectedIndex].PhoneNumber = textBox2.Text;
+                        people[selectedIndex].Address = textBox3.Text;
+                        people[selectedIndex].Age = int.Parse(textBox4.Text);
+                        people[selectedIndex].Gender = radioButton1.Checked ? "Male" : "Female";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
         }
     }
 }

@@ -16,6 +16,7 @@ namespace PROIECTWAP.Forms
             LoadTheme();
             interviews = new List<Interview>();
             InitializeDataGridView();
+            LoadInterviews();
         }
 
         private void LoadTheme()
@@ -98,7 +99,14 @@ namespace PROIECTWAP.Forms
                 string interviewLocation = textBox3.Text;
                 string interviewResult = radioButton1.Checked ? "Accepted" : "Rejected";
 
-                Interview newInterview = new Interview(interviewID, interviewDuration, interviewTime, interviewLocation, interviewResult);
+                Interview newInterview = new Interview
+                {
+                    ID = interviewID,
+                    Duration = interviewDuration,
+                    Time = interviewTime,
+                    Location = interviewLocation,
+                    Result = interviewResult
+                };
                 interviews.Add(newInterview);
 
                 // Refresh the DataGridView
@@ -120,36 +128,95 @@ namespace PROIECTWAP.Forms
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Serialization.SerializeBinary(interviews, "interviews.dat");
+            Serialization.SerializeXML(interviews, "interviews.xml");
+            MessageBox.Show("Data saved successfully in binary and XML formats.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void LoadInterviews()
+        {
+            interviews = Serialization.DeserializeBinary<Interview>("interviews.dat");
+            if (interviews.Count == 0)
+            {
+                interviews = Serialization.DeserializeXML<Interview>("interviews.xml");
+            }
+            dataGridView1.DataSource = interviews;
+        }
+
+        private void btnDeserialize_Click(object sender, EventArgs e)
+        {
+            // Deserialize the data
+            interviews = Serialization.DeserializeBinary<Interview>("interviews.dat");
+            if (interviews.Count == 0)
+            {
+                interviews = Serialization.DeserializeXML<Interview>("interviews.xml");
+            }
+            MessageBox.Show("Data loaded successfully from binary and XML formats.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = interviews;
+        }
+
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                Interview selectedInterview = (Interview)dataGridView1.SelectedRows[0].DataBoundItem;
-                interviews.Remove(selectedInterview);
+                try
+                {
+                    int selectedIndex = dataGridView1.SelectedRows[0].Index;
+                    if (selectedIndex >= 0 && selectedIndex < interviews.Count)
+                    {
+                        interviews.RemoveAt(selectedIndex);
+                        dataGridView1.DataSource = null;
+                        dataGridView1.DataSource = interviews;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while deleting the interview: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
-                // Refresh the DataGridView
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = interviews;
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int selectedIndex = dataGridView1.SelectedRows[0].Index;
+                    if (selectedIndex >= 0 && selectedIndex < interviews.Count)
+                    {
+                        interviews[selectedIndex].ID = int.Parse(textBox1.Text);
+                        interviews[selectedIndex].Duration = textBox2.Text;
+                        interviews[selectedIndex].Time = dateTimePicker1.Value.ToShortTimeString();
+                        interviews[selectedIndex].Location = textBox3.Text;
+                        interviews[selectedIndex].Result = radioButton1.Checked ? "Accepted" : "Rejected";
+
+                        dataGridView1.DataSource = null;
+                        dataGridView1.DataSource = interviews;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while updating the interview: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            // Clear the text boxes and reset controls
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            radioButton1.Checked = false;
-            radioButton2.Checked = false;
-            dateTimePicker1.Value = DateTime.Now;
-            textBox1.Focus();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            Serialization.SerializeBinary(interviews);
-            Serialization.SerializeXML(interviews);
-            MessageBox.Show("Data saved successfully in binary and XML.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadInterviews();
+            MessageBox.Show("Data reloaded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

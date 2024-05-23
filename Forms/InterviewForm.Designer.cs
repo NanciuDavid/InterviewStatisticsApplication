@@ -72,6 +72,7 @@
             btnSave.TabIndex = 31;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnClear
             // 
@@ -82,8 +83,9 @@
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(92, 39);
             btnClear.TabIndex = 30;
-            btnClear.Text = "Clear";
+            btnClear.Text = "Deserialize";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // btnDelete
             // 
@@ -96,6 +98,7 @@
             btnDelete.TabIndex = 29;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click_1;
             // 
             // dataGridView1
             // 
@@ -204,6 +207,7 @@
             btnUpdate.TabIndex = 18;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // label6
             // 

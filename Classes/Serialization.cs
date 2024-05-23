@@ -8,53 +8,50 @@ namespace PROIECTWAP.Classes
 {
     public static class Serialization
     {
-        private static readonly string BinaryFilePath = "people.dat";
-        private static readonly string XmlFilePath = "people.xml";
-
-        public static void SerializeBinary(List<Person> people)
+        public static void SerializeBinary<T>(List<T> data, string filePath)
         {
-            using (FileStream fs = new FileStream(BinaryFilePath, FileMode.Create))
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
             {
-                var formatter = new DataContractSerializer(typeof(List<Person>));
-                formatter.WriteObject(fs, people);
+                var formatter = new DataContractSerializer(typeof(List<T>));
+                formatter.WriteObject(fs, data);
             }
         }
 
-        public static List<Person> DeserializeBinary()
+        public static List<T> DeserializeBinary<T>(string filePath)
         {
-            if (!File.Exists(BinaryFilePath))
-                return new List<Person>();
+            if (!File.Exists(filePath))
+                return new List<T>();
 
-            using (FileStream fs = new FileStream(BinaryFilePath, FileMode.Open))
+            using (FileStream fs = new FileStream(filePath, FileMode.Open))
             {
-                var formatter = new DataContractSerializer(typeof(List<Person>));
-                return (List<Person>)formatter.ReadObject(fs);
+                var formatter = new DataContractSerializer(typeof(List<T>));
+                return (List<T>)formatter.ReadObject(fs);
             }
         }
 
-        public static void SerializeXML(List<Person> people)
+        public static void SerializeXML<T>(List<T> data, string filePath)
         {
-            using (FileStream fs = new FileStream(XmlFilePath, FileMode.Create))
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Person>));
-                serializer.Serialize(fs, people);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+                serializer.Serialize(fs, data);
             }
         }
 
-        public static List<Person> DeserializeXML()
+        public static List<T> DeserializeXML<T>(string filePath)
         {
-            if (!File.Exists(XmlFilePath))
-                return new List<Person>();
+            if (!File.Exists(filePath))
+                return new List<T>();
 
             // Check if the file is not empty
-            FileInfo fileInfo = new FileInfo(XmlFilePath);
+            FileInfo fileInfo = new FileInfo(filePath);
             if (fileInfo.Length == 0)
-                return new List<Person>();
+                return new List<T>();
 
-            using (FileStream fs = new FileStream(XmlFilePath, FileMode.Open))
+            using (FileStream fs = new FileStream(filePath, FileMode.Open))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Person>));
-                return (List<Person>)serializer.Deserialize(fs);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+                return (List<T>)serializer.Deserialize(fs);
             }
         }
     }
