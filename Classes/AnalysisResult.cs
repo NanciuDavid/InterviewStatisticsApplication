@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace PROIECTWAP.Classes
 {
-    internal class AnalysisResult
+    [Serializable]
+    public class AnalysisResult
     {
 
-        private String department; // department of the analysis
+        private String _department; // department of the analysis
         private int _totalInterviews; // total number of interviews
         private int _totalAccepted; // total number of accepted interviews
         private int _totalRejected; // total number of rejected interviews
@@ -17,15 +18,21 @@ namespace PROIECTWAP.Classes
         private double _rejectionRate; // rejection rate of the interviews
 
 
-        public AnalysisResult(int totalInterviews, int totalAccepted, int totalRejected, double acceptanceRate, double rejectionRate)
+        public AnalysisResult() { }
+        public AnalysisResult(string department, int totalInterviews, int totalAccepted, int totalRejected, double acceptanceRate, double rejectionRate)
         {
+            _department = department;
             _totalInterviews = totalInterviews;
             _totalAccepted = totalAccepted;
             _totalRejected = totalRejected;
-            _acceptanceRate = acceptanceRate;
-            _rejectionRate = rejectionRate;
         }
 
+
+        public String Department
+        {
+            get { return _department; }
+            set { _department = value; }
+        }
 
         public int TotalInterviews
         {

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             label1 = new Label();
             btnUpdate = new Button();
             textBox1 = new TextBox();
@@ -48,7 +48,11 @@
             label6 = new Label();
             label7 = new Label();
             btnAdd = new Button();
+            menuStrip1 = new MenuStrip();
+            exportToolStripMenuItem = new ToolStripMenuItem();
+            importDataBaseToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -64,6 +68,7 @@
             // btnUpdate
             // 
             btnUpdate.Anchor = AnchorStyles.Bottom;
+            btnUpdate.AutoSize = true;
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Montserrat", 9.749999F);
             btnUpdate.Location = new Point(301, 377);
@@ -152,7 +157,7 @@
             label5.Anchor = AnchorStyles.Top;
             label5.AutoSize = true;
             label5.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(579, 21);
+            label5.Location = new Point(579, 28);
             label5.Name = "label5";
             label5.Size = new Size(104, 22);
             label5.TabIndex = 12;
@@ -165,14 +170,14 @@
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Montserrat", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Montserrat", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             dataGridView1.Location = new Point(455, 53);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(362, 282);
@@ -181,6 +186,7 @@
             // btnDelete
             // 
             btnDelete.Anchor = AnchorStyles.Bottom;
+            btnDelete.AutoSize = true;
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Montserrat", 9.749999F);
             btnDelete.Location = new Point(446, 377);
@@ -194,6 +200,7 @@
             // btnDeserialize
             // 
             btnDeserialize.Anchor = AnchorStyles.Bottom;
+            btnDeserialize.AutoSize = true;
             btnDeserialize.FlatStyle = FlatStyle.Flat;
             btnDeserialize.Font = new Font("Montserrat", 9.749999F);
             btnDeserialize.Location = new Point(591, 377);
@@ -207,6 +214,7 @@
             // btnSave
             // 
             btnSave.Anchor = AnchorStyles.Bottom;
+            btnSave.AutoSize = true;
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Montserrat", 9.749999F);
             btnSave.Location = new Point(153, 377);
@@ -255,6 +263,33 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.BackColor = Color.FromArgb(51, 51, 76);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { exportToolStripMenuItem, importDataBaseToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(844, 24);
+            menuStrip1.TabIndex = 22;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // exportToolStripMenuItem
+            // 
+            exportToolStripMenuItem.Font = new Font("Montserrat", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            exportToolStripMenuItem.ForeColor = Color.White;
+            exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            exportToolStripMenuItem.Size = new Size(59, 20);
+            exportToolStripMenuItem.Text = "Export";
+            exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
+            // 
+            // importDataBaseToolStripMenuItem
+            // 
+            importDataBaseToolStripMenuItem.Font = new Font("Montserrat", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            importDataBaseToolStripMenuItem.ForeColor = Color.White;
+            importDataBaseToolStripMenuItem.Name = "importDataBaseToolStripMenuItem";
+            importDataBaseToolStripMenuItem.Size = new Size(123, 20);
+            importDataBaseToolStripMenuItem.Text = "Import DataBase";
+            // 
             // PersonsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -280,10 +315,14 @@
             Controls.Add(textBox1);
             Controls.Add(btnUpdate);
             Controls.Add(label1);
+            Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            MainMenuStrip = menuStrip1;
             Name = "PersonsForm";
             Text = "PersonsForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -309,5 +348,8 @@
         private Label label6;
         private Label label7;
         private Button btnAdd;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem importDataBaseToolStripMenuItem;
     }
 }

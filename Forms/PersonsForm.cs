@@ -167,9 +167,9 @@ namespace PROIECTWAP.Forms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-          //update data
+            //update data
 
-          if (dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 try
                 {
@@ -193,5 +193,20 @@ namespace PROIECTWAP.Forms
                 MessageBox.Show("Please select a row to update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             };
         }
+
+   
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("personsExport.txt"))
+            {
+                foreach (Person person in people)
+                {
+                    file.WriteLine(person.Name + " " + person.PhoneNumber + " " + person.Address + " " + person.Age + " " + person.Gender + "\n");
+                }
+            }
+            MessageBox.Show("Data exported successfully to text file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+       
     }
 }
