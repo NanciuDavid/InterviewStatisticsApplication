@@ -10,22 +10,21 @@ namespace PROIECTWAP.Classes
     {
 
         private int _interviewID; // unique identifier for the interview
-        private string _interviewDate; // date of the interview
+        private string _interviewDuration; // date of the interview
         private string _interviewTime; // time of the interview
         private string _interviewLocation; // location of the interview  
-        private bool _interviewResult; // accepted / rejected
+        private string _interviewResult; // accepted / rejected
 
         private Person _person; // the person who was interviewed
 
 
-        public Interview(int interviewID, string interviewDate, string interviewTime, string interviewLocation, bool interviewResult, Person person)
+        public Interview(int interviewID, string interviewDuration, string interviewTime, string interviewLocation, string interviewResult)
         {
             _interviewID = interviewID;
-            _interviewDate = interviewDate;
+            _interviewDuration = interviewDuration;
             _interviewTime = interviewTime;
             _interviewLocation = interviewLocation;
             _interviewResult = interviewResult;
-            _person = person;
         }
 
 
@@ -34,10 +33,10 @@ namespace PROIECTWAP.Classes
             get { return _interviewID; }
             set { _interviewID = value; }
         }
-        public string InterviewDate
+        public string InterviewDuration
         {
-            get { return _interviewDate; }
-            set { _interviewDate = value; }
+            get { return _interviewDuration; }
+            set { _interviewDuration = value; }
         }
         public string InterviewTime
         {
@@ -49,15 +48,10 @@ namespace PROIECTWAP.Classes
             get { return _interviewLocation; }
             set { _interviewLocation = value; }
         }
-        public bool InterviewResult
+        public string InterviewResult
         {
             get { return _interviewResult; }
             set { _interviewResult = value; }
-        }
-        public Person Person
-        {
-            get { return _person; }
-            set { _person = value; }
         }
 
 

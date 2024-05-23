@@ -46,6 +46,7 @@
             label6 = new Label();
             dateTimePicker1 = new DateTimePicker();
             label7 = new Label();
+            btnAdd = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -99,6 +100,8 @@
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(455, 53);
@@ -229,12 +232,25 @@
             label7.TabIndex = 33;
             label7.Text = "Duration ";
             // 
+            // btnAdd
+            // 
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Montserrat", 9.749999F);
+            btnAdd.Location = new Point(354, 137);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(92, 39);
+            btnAdd.TabIndex = 34;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
             // InterviewForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(231, 232, 209);
             ClientSize = new Size(844, 457);
+            Controls.Add(btnAdd);
             Controls.Add(label7);
             Controls.Add(dateTimePicker1);
             Controls.Add(btnSave);
@@ -281,5 +297,6 @@
         private Label label6;
         private DateTimePicker dateTimePicker1;
         private Label label7;
+        private Button btnAdd;
     }
 }
