@@ -1,6 +1,7 @@
 using PROIECTWAP.Classes;
 using PROIECTWAP.Forms;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -42,8 +43,10 @@ namespace PROIECTWAP
                     currentButton.BackColor = color;
                     currentButton.ForeColor = Color.White;
                     currentButton.Font = new System.Drawing.Font("Montserrat", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    panelTitleBar.BackColor = color;
+                    panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
                 }
-            }
+                }
         }
 
         private void DisableButton()
@@ -61,26 +64,60 @@ namespace PROIECTWAP
 
         private Form activeForm = null;
 
+        private void OpenChildForm(Form childForm, object btnSender)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+            }
+            ActivateButton(btnSender);
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add(childForm);
+            panelDesktop.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            lblTitle.Text = childForm.Text;
+        }
+
+
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-          ActivateButton(sender);
-           
+            ActivateButton(sender);
+            OpenChildForm(new DashboardForm(), sender);
         }
 
         private void btnAnalysis_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            OpenChildForm(new AnalysisForm(), sender);
         }
 
         private void btnInterview_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            OpenChildForm(new InterviewForm(), sender);
         }
 
         private void btnPerson_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            OpenChildForm(new PersonsForm(), sender);
         }
 
+        private void githubPicture_Click(object sender, EventArgs e)
+        {
+          
+            string githubUrl = "https://github.com/NanciuDavid";
+
+           
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = githubUrl,
+                UseShellExecute = true
+            });
+        }
     }
 }

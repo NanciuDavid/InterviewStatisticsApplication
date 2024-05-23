@@ -35,7 +35,14 @@
             btnInterview = new Button();
             btnPerson = new Button();
             panelLogo = new Panel();
+            githubPicture = new PictureBox();
+            panelTitleBar = new Panel();
+            lblTitle = new Label();
+            panelDesktop = new Panel();
             panelMenu.SuspendLayout();
+            panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)githubPicture).BeginInit();
+            panelTitleBar.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -57,7 +64,7 @@
             btnDashboard.Dock = DockStyle.Top;
             btnDashboard.FlatAppearance.BorderSize = 0;
             btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Montserrat", 12F, FontStyle.Bold);
+            btnDashboard.Font = new Font("Montserrat", 12F);
             btnDashboard.ForeColor = Color.White;
             btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
@@ -77,7 +84,7 @@
             btnAnalysis.Dock = DockStyle.Top;
             btnAnalysis.FlatAppearance.BorderSize = 0;
             btnAnalysis.FlatStyle = FlatStyle.Flat;
-            btnAnalysis.Font = new Font("Montserrat", 12F, FontStyle.Bold);
+            btnAnalysis.Font = new Font("Montserrat", 12F);
             btnAnalysis.ForeColor = Color.White;
             btnAnalysis.Image = (Image)resources.GetObject("btnAnalysis.Image");
             btnAnalysis.ImageAlign = ContentAlignment.MiddleLeft;
@@ -97,7 +104,7 @@
             btnInterview.Dock = DockStyle.Top;
             btnInterview.FlatAppearance.BorderSize = 0;
             btnInterview.FlatStyle = FlatStyle.Flat;
-            btnInterview.Font = new Font("Montserrat", 12F, FontStyle.Bold);
+            btnInterview.Font = new Font("Montserrat", 12F);
             btnInterview.ForeColor = Color.White;
             btnInterview.Image = (Image)resources.GetObject("btnInterview.Image");
             btnInterview.ImageAlign = ContentAlignment.MiddleLeft;
@@ -117,7 +124,7 @@
             btnPerson.Dock = DockStyle.Top;
             btnPerson.FlatAppearance.BorderSize = 0;
             btnPerson.FlatStyle = FlatStyle.Flat;
-            btnPerson.Font = new Font("Montserrat", 12F, FontStyle.Bold);
+            btnPerson.Font = new Font("Montserrat", 12F);
             btnPerson.ForeColor = Color.White;
             btnPerson.Image = Properties.Resources.user__1_;
             btnPerson.ImageAlign = ContentAlignment.MiddleLeft;
@@ -135,12 +142,55 @@
             // panelLogo
             // 
             panelLogo.BackColor = Color.FromArgb(39, 39, 58);
+            panelLogo.Controls.Add(githubPicture);
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
             panelLogo.Name = "panelLogo";
             panelLogo.Padding = new Padding(12, 0, 0, 0);
             panelLogo.Size = new Size(220, 80);
             panelLogo.TabIndex = 0;
+            // 
+            // githubPicture
+            // 
+            githubPicture.BackgroundImageLayout = ImageLayout.None;
+            githubPicture.Image = (Image)resources.GetObject("githubPicture.Image");
+            githubPicture.Location = new Point(39, 12);
+            githubPicture.Name = "githubPicture";
+            githubPicture.Size = new Size(100, 50);
+            githubPicture.SizeMode = PictureBoxSizeMode.Zoom;
+            githubPicture.TabIndex = 0;
+            githubPicture.TabStop = false;
+            githubPicture.Click += githubPicture_Click;
+            // 
+            // panelTitleBar
+            // 
+            panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
+            panelTitleBar.Controls.Add(lblTitle);
+            panelTitleBar.Dock = DockStyle.Top;
+            panelTitleBar.Location = new Point(220, 0);
+            panelTitleBar.Name = "panelTitleBar";
+            panelTitleBar.Size = new Size(628, 80);
+            panelTitleBar.TabIndex = 1;
+            // 
+            // lblTitle
+            // 
+            lblTitle.Anchor = AnchorStyles.None;
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Montserrat", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(258, 26);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(82, 29);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "HOME";
+            // 
+            // panelDesktop
+            // 
+            panelDesktop.Dock = DockStyle.Fill;
+            panelDesktop.Location = new Point(220, 80);
+            panelDesktop.Name = "panelDesktop";
+            panelDesktop.Size = new Size(628, 456);
+            panelDesktop.TabIndex = 2;
             // 
             // Form1
             // 
@@ -149,11 +199,17 @@
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(848, 536);
+            Controls.Add(panelDesktop);
+            Controls.Add(panelTitleBar);
             Controls.Add(panelMenu);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             panelMenu.ResumeLayout(false);
+            panelLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)githubPicture).EndInit();
+            panelTitleBar.ResumeLayout(false);
+            panelTitleBar.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -165,5 +221,10 @@
         private Button btnDashboard;
         private Button btnAnalysis;
         private Button btnInterview;
+        private Panel panelTitleBar;
+        private Label label1;
+        private Label lblTitle;
+        private PictureBox githubPicture;
+        private Panel panelDesktop;
     }
 }
