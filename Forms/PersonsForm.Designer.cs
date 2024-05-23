@@ -43,6 +43,9 @@
             btnDelete = new Button();
             btnClear = new Button();
             btnSave = new Button();
+            textBox4 = new TextBox();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -113,7 +116,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(68, 222);
+            label4.Location = new Point(68, 256);
             label4.Name = "label4";
             label4.Size = new Size(70, 22);
             label4.TabIndex = 9;
@@ -122,7 +125,7 @@
             // radioButton1
             // 
             radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(153, 226);
+            radioButton1.Location = new Point(153, 260);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(51, 19);
             radioButton1.TabIndex = 10;
@@ -133,7 +136,7 @@
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(223, 226);
+            radioButton2.Location = new Point(223, 260);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(63, 19);
             radioButton2.TabIndex = 11;
@@ -198,12 +201,41 @@
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
             // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(153, 216);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(195, 23);
+            textBox4.TabIndex = 18;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(63, 216);
+            label6.Name = "label6";
+            label6.Size = new Size(0, 22);
+            label6.TabIndex = 17;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(96, 216);
+            label7.Name = "label7";
+            label7.Size = new Size(42, 22);
+            label7.TabIndex = 19;
+            label7.Text = "Age";
+            // 
             // PersonsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(231, 232, 209);
             ClientSize = new Size(844, 457);
+            Controls.Add(label7);
+            Controls.Add(textBox4);
+            Controls.Add(label6);
             Controls.Add(btnSave);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
@@ -244,5 +276,8 @@
         private Button btnDelete;
         private Button btnClear;
         private Button btnSave;
+        private TextBox textBox4;
+        private Label label6;
+        private Label label7;
     }
 }

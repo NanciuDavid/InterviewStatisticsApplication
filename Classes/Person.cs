@@ -12,13 +12,19 @@ namespace PROIECTWAP.Classes
         private string _phoneNumber;
         private string _gender;
         private int _age;
+        private String _address;
 
-        public Person(string name, string phoneNumber, string gender, int age)
+        public Person()
+        {
+        }
+
+        public Person(string name, string phoneNumber, string gender, int age, string address          )
         {
             _name = name;
             _phoneNumber = phoneNumber;
             _gender = gender;
             _age = age;
+            _address = address;
         }
 
         public string Name
@@ -43,6 +49,10 @@ namespace PROIECTWAP.Classes
             set { _age = value; }
         }
 
-
+        public String Address
+        {
+            get { return _address; }
+            set { _address = value; }
+        }
     }
 }
