@@ -3,6 +3,7 @@ using PROIECTWAP.Forms;
 using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace PROIECTWAP
@@ -13,7 +14,16 @@ namespace PROIECTWAP
         {
             InitializeComponent();
             random = new Random();
+            btnCloseChild.Visible = false;
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
         private Button currentButton;
         private Random random;
@@ -125,7 +135,7 @@ namespace PROIECTWAP
 
         private void btnCloseChild_Click(object sender, EventArgs e)
         {
-            if(activeForm!=null)
+            if (activeForm != null)
             {
                 activeForm.Close();
             }
@@ -152,7 +162,65 @@ namespace PROIECTWAP
                 btnCloseChild.PerformClick();
                 return true;
             }
+
+            if (keyData == (Keys.Alt | Keys.X))
+            {
+                btnMaximize.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys.Alt | Keys.M))
+            {
+                btnMinimize.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys.Alt | Keys.F4))
+            {
+                btnClose.PerformClick();
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           //close application
+            Application.Exit();
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if(this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else if(this.WindowState == FormWindowState.Normal)
+            this.WindowState = FormWindowState.Maximized;
+           
+
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+           if(this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            } else if(this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+
+        }
+
+      
+
     }
 }

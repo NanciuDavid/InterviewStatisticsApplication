@@ -37,6 +37,9 @@
             panelLogo = new Panel();
             githubPicture = new PictureBox();
             panelTitleBar = new Panel();
+            btnMinimize = new Button();
+            btnMaximize = new Button();
+            btnClose = new Button();
             btnCloseChild = new Button();
             lblTitle = new Label();
             panelDesktop = new Panel();
@@ -169,6 +172,9 @@
             // panelTitleBar
             // 
             panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
+            panelTitleBar.Controls.Add(btnMinimize);
+            panelTitleBar.Controls.Add(btnMaximize);
+            panelTitleBar.Controls.Add(btnClose);
             panelTitleBar.Controls.Add(btnCloseChild);
             panelTitleBar.Controls.Add(lblTitle);
             panelTitleBar.Dock = DockStyle.Top;
@@ -176,6 +182,52 @@
             panelTitleBar.Name = "panelTitleBar";
             panelTitleBar.Size = new Size(628, 80);
             panelTitleBar.TabIndex = 1;
+            panelTitleBar.MouseDown += panelTitleBar_MouseDown;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Font = new Font("Montserrat", 8.999999F, FontStyle.Bold);
+            btnMinimize.ForeColor = Color.White;
+            btnMinimize.Location = new Point(523, 3);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(30, 30);
+            btnMinimize.TabIndex = 4;
+            btnMinimize.Text = "O";
+            btnMinimize.UseVisualStyleBackColor = true;
+            btnMinimize.Click += btnMinimize_Click;
+            // 
+            // btnMaximize
+            // 
+            btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximize.FlatAppearance.BorderSize = 0;
+            btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.Font = new Font("Montserrat", 8.999999F, FontStyle.Bold);
+            btnMaximize.ForeColor = Color.White;
+            btnMaximize.Location = new Point(559, 3);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.Size = new Size(30, 30);
+            btnMaximize.TabIndex = 3;
+            btnMaximize.Text = "O";
+            btnMaximize.UseVisualStyleBackColor = true;
+            btnMaximize.Click += btnMaximize_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Montserrat", 8.999999F, FontStyle.Bold);
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(595, 3);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(30, 30);
+            btnClose.TabIndex = 2;
+            btnClose.Text = "O";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += button1_Click;
             // 
             // btnCloseChild
             // 
@@ -260,5 +312,8 @@
         private Panel panelDesktop;
         private Button btnCloseChild;
         private PictureBox pictureBox1;
+        private Button btnClose;
+        private Button btnMinimize;
+        private Button btnMaximize;
     }
 }
