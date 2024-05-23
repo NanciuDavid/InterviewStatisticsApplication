@@ -50,7 +50,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(68, 116);
+            label1.Location = new Point(68, 76);
             label1.Name = "label1";
             label1.Size = new Size(59, 22);
             label1.TabIndex = 0;
@@ -70,23 +70,23 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(153, 119);
+            textBox1.Location = new Point(153, 79);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(145, 23);
+            textBox1.Size = new Size(195, 23);
             textBox1.TabIndex = 4;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(153, 162);
+            textBox2.Location = new Point(153, 122);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(145, 23);
+            textBox2.Size = new Size(195, 23);
             textBox2.TabIndex = 6;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(11, 163);
+            label2.Location = new Point(11, 123);
             label2.Name = "label2";
             label2.Size = new Size(133, 22);
             label2.TabIndex = 5;
@@ -94,16 +94,16 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(153, 212);
+            textBox3.Location = new Point(153, 172);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(145, 23);
+            textBox3.Size = new Size(195, 23);
             textBox3.TabIndex = 8;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(52, 213);
+            label3.Location = new Point(52, 173);
             label3.Name = "label3";
             label3.Size = new Size(75, 22);
             label3.TabIndex = 7;
@@ -113,7 +113,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Montserrat", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(68, 262);
+            label4.Location = new Point(68, 222);
             label4.Name = "label4";
             label4.Size = new Size(70, 22);
             label4.TabIndex = 9;
@@ -122,7 +122,7 @@
             // radioButton1
             // 
             radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(153, 266);
+            radioButton1.Location = new Point(153, 226);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(51, 19);
             radioButton1.TabIndex = 10;
@@ -133,7 +133,7 @@
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(223, 266);
+            radioButton2.Location = new Point(223, 226);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(63, 19);
             radioButton2.TabIndex = 11;

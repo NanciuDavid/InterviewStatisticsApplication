@@ -13,12 +13,12 @@ namespace PROIECTWAP.Classes
         private string _interviewDate; // date of the interview
         private string _interviewTime; // time of the interview
         private string _interviewLocation; // location of the interview  
-        private string _interviewResult; // accepted / rejected
+        private bool _interviewResult; // accepted / rejected
 
         private Person _person; // the person who was interviewed
 
 
-        public Interview(int interviewID, string interviewDate, string interviewTime, string interviewLocation, string interviewResult, Person person)
+        public Interview(int interviewID, string interviewDate, string interviewTime, string interviewLocation, bool interviewResult, Person person)
         {
             _interviewID = interviewID;
             _interviewDate = interviewDate;
@@ -49,7 +49,7 @@ namespace PROIECTWAP.Classes
             get { return _interviewLocation; }
             set { _interviewLocation = value; }
         }
-        public string InterviewResult
+        public bool InterviewResult
         {
             get { return _interviewResult; }
             set { _interviewResult = value; }
