@@ -38,6 +38,9 @@ namespace PROIECTWAP.Classes
 
             return Color.FromArgb(color.A, (int)red, (int)green, (int)blue);
         }
+
+        public static Color PrimaryColor { get; set; }
+        public static Color SecondaryColor { get; set; }
     }
 
    
