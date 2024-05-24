@@ -93,4 +93,6 @@ namespace PROIECTWAP.Classes
         }
 
     }
+    //create the  method LoadAnalysisResults used to retrieve data from db into datagridview
+
 }
