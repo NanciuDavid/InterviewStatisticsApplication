@@ -9,8 +9,7 @@ namespace PROIECTWAP.Forms
 {
     public partial class PersonsForm : Form
     {
-        static string dbFilePath = "\"DemoDB.db\"";
-        private static SqliteDataAccess dataAccess = new SqliteDataAccess(dbFilePath);
+       
         private List<Person> people;
 
         private PrintDocument printDocument;
@@ -22,7 +21,6 @@ namespace PROIECTWAP.Forms
             InitializeDataGridView();
             LoadPeople();
         }
-
         private void LoadTheme()
         {
             foreach (Control btns in this.Controls)
@@ -38,7 +36,6 @@ namespace PROIECTWAP.Forms
             {
                 label5.ForeColor = ThemeColor.SecondaryColor;
             }
-
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = ThemeColor.PrimaryColor;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGridView1.EnableHeadersVisualStyles = false;
@@ -47,6 +44,7 @@ namespace PROIECTWAP.Forms
 
         private void InitializeDataGridView()
         {
+            dataGridView1.AutoGenerateColumns = false;
             // Clear existing columns
             dataGridView1.Columns.Clear();
 
@@ -57,28 +55,24 @@ namespace PROIECTWAP.Forms
                 HeaderText = "Name"
             };
             dataGridView1.Columns.Add(nameColumn);
-
             DataGridViewTextBoxColumn phoneColumn = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "PhoneNumber",
                 HeaderText = "Phone"
             };
             dataGridView1.Columns.Add(phoneColumn);
-
             DataGridViewTextBoxColumn addressColumn = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Address",
                 HeaderText = "Address"
             };
             dataGridView1.Columns.Add(addressColumn);
-
             DataGridViewTextBoxColumn ageColumn = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Age",
                 HeaderText = "Age"
             };
             dataGridView1.Columns.Add(ageColumn);
-
             DataGridViewTextBoxColumn genderColumn = new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Gender",
@@ -98,14 +92,12 @@ namespace PROIECTWAP.Forms
                 MessageBox.Show("Please fill all the fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             // Age validation
             if (int.Parse(textBox4.Text) < 18)
             {
                 MessageBox.Show("Age must be greater than 18", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             // Add a new person to the list
             people.Add(new Person
             {
@@ -117,14 +109,14 @@ namespace PROIECTWAP.Forms
             });
 
             //store again values and introduce in db with var result 
-            var result = new Person(textBox1.Text, textBox2.Text, textBox3.Text, int.Parse(textBox4.Text), radioButton1.Checked ? "Male" : "Female");
-            dataAccess.InsertPerson(result);
+            Person result = new Person(textBox1.Text, textBox2.Text, textBox3.Text, int.Parse(textBox4.Text), radioButton1.Checked ? "Male" : "Female");
+            //insert the person in the db
+            SqliteDataAccess.InsertPerson(result);
 
 
             // Refresh the DataGridView
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = people;
-
             // Clear the text boxes
             textBox1.Text = "";
             textBox2.Text = "";
@@ -132,18 +124,15 @@ namespace PROIECTWAP.Forms
             textBox4.Text = "";
             radioButton1.Checked = false;
             radioButton2.Checked = false;
-
             // Focus the first text box
             textBox1.Focus();
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             Serialization.SerializeBinary(people, "people.dat");
             Serialization.SerializeXML(people, "people.xml");
             MessageBox.Show("Data saved successfully in binary and xml.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
         private void LoadPeople()
         {
             people = Serialization.DeserializeBinary<Person>("people.dat");
@@ -153,7 +142,6 @@ namespace PROIECTWAP.Forms
             }
             dataGridView1.DataSource = people;
         }
-
         private void btnDeserialize_Click(object sender, EventArgs e)
         {
             //deserialize the data
@@ -166,7 +154,6 @@ namespace PROIECTWAP.Forms
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = people;
         }
-
         private void btnDelete_Click_1(object sender, EventArgs e)
         {
             //delete the selected row
@@ -177,11 +164,9 @@ namespace PROIECTWAP.Forms
                 dataGridView1.DataSource = people;
             }
         }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             //update data
-
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 try
@@ -209,6 +194,7 @@ namespace PROIECTWAP.Forms
 
 
 
+
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (System.IO.StreamWriter file = new System.IO.StreamWriter("personsExport.txt"))
@@ -220,6 +206,7 @@ namespace PROIECTWAP.Forms
             }
             MessageBox.Show("Data exported successfully to text file.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {

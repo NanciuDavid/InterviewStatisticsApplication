@@ -9,8 +9,6 @@ namespace PROIECTWAP.Forms
     public partial class AnalysisForm : Form
     {
         public List<AnalysisResult> results = new List<AnalysisResult>();
-        static string dbFilePath = "\"DemoDB.db\"";
-        private static SqliteDataAccess dataAccess = new SqliteDataAccess(dbFilePath);
 
         public AnalysisForm()
         {
@@ -115,7 +113,7 @@ namespace PROIECTWAP.Forms
                     RejectionRate = rejectionRate
                 };
 
-                dataAccess.InsertAnalysisResult(resultdb);
+               SqliteDataAccess.InsertAnalysisResults(resultdb);
 
                 results.Add(result);
 

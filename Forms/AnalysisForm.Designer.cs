@@ -46,7 +46,6 @@
             btnAdd = new Button();
             menuStrip1 = new MenuStrip();
             exportToolStripMenuItem = new ToolStripMenuItem();
-            importDataBaseToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -220,7 +219,7 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.FromArgb(51, 51, 76);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { exportToolStripMenuItem, importDataBaseToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { exportToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(848, 24);
@@ -235,14 +234,6 @@
             exportToolStripMenuItem.Size = new Size(59, 20);
             exportToolStripMenuItem.Text = "Export";
             exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
-            // 
-            // importDataBaseToolStripMenuItem
-            // 
-            importDataBaseToolStripMenuItem.Font = new Font("Montserrat", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            importDataBaseToolStripMenuItem.ForeColor = Color.White;
-            importDataBaseToolStripMenuItem.Name = "importDataBaseToolStripMenuItem";
-            importDataBaseToolStripMenuItem.Size = new Size(123, 20);
-            importDataBaseToolStripMenuItem.Text = "Import DataBase";
             // 
             // AnalysisForm
             // 
@@ -298,6 +289,5 @@
         private Button btnDeserialize;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem exportToolStripMenuItem;
-        private ToolStripMenuItem importDataBaseToolStripMenuItem;
     }
 }

@@ -28,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="DemoDB.db" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="bin\Debug\net8.0-windows\Interviews.txt" />
     <Content Include="bin\Debug\net8.0-windows\interviews.xml" />
     <Content Include="bin\Debug\net8.0-windows\people.xml" />
@@ -36,6 +40,9 @@
     <Content Include="bin\Debug\net8.0-windows\PROIECTWAP.runtimeconfig.json" />
     <Content Include="bin\Debug\net8.0-windows\results.txt" />
     <Content Include="bin\Debug\net8.0-windows\results.xml" />
+    <Content Include="DemoDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

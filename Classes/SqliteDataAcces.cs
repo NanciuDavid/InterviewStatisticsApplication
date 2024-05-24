@@ -1,96 +1,50 @@
-﻿using System.Data.SQLite;
+﻿using System.Configuration;
+using System.Data.SQLite;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Net;
+using Dapper;
 
 namespace PROIECTWAP.Classes
 {
-    internal class SqliteDataAccess
+    public class SqliteDataAccess
     {
-        private string connectionString;
 
-        public SqliteDataAccess(string dbFilePath)
+        private static string LoadConnectionString(string id = "Default")
         {
-            // Set connection string using the provided database file path
-            connectionString = $"Data Source={dbFilePath};Version=3;";
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
-        public void CreateDatabase()
+        //method called InsertPerson that takes a Person object as a parameter and saves it in the db
+        public static void InsertPerson(Person person)
         {
-            SQLiteConnection.CreateFile(connectionString);
-        }
-
-        public void DeleteDatabase(string dbFilePath)
-        {
-            if (System.IO.File.Exists(dbFilePath))
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                System.IO.File.Delete(dbFilePath);
+                cnn.Execute("insert into Person (Name, PhoneNumber, Address, Age, Gender) values (@Name, @PhoneNumber, @Address, @Age, @Gender)", person);
+            }
+
+        }
+
+        public static void InsertInterview(Interview interview)
+        {
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("insert into Interview (Duration, Time, Location, Result) values (@Duration, @Time, @Location, @Result)", interview);
             }
         }
 
-        public string GetConnectionString()
+        //do the same for AnalysisResult
+        public static void InsertAnalysisResults(AnalysisResult analysisResults)
         {
-            return connectionString;
-        }
-
-        // Insert data into the database 
-        public void InsertAnalysisResult(AnalysisResult result)
-        {
-            using (var connection = new SQLiteConnection(connectionString))
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Open();
-                string insertQuery = @"INSERT INTO AnalysisResult (Department, TotalInterviews, TotalAccepted, TotalRejected, AcceptanceRate, RejectionRate)
-                                       VALUES (@Department, @TotalInterviews, @TotalAccepted, @TotalRejected, @AcceptanceRate, @RejectionRate);";
-
-                using (var command = new SQLiteCommand(insertQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@Department", result.Department);
-                    command.Parameters.AddWithValue("@TotalInterviews", result.TotalInterviews);
-                    command.Parameters.AddWithValue("@TotalAccepted", result.TotalAccepted);
-                    command.Parameters.AddWithValue("@TotalRejected", result.TotalRejected);
-                    command.Parameters.AddWithValue("@AcceptanceRate", result.AcceptanceRate);
-                    command.Parameters.AddWithValue("@RejectionRate", result.RejectionRate);
-
-                    command.ExecuteNonQuery();
-                }
+                cnn.Execute("insert into AnalysisResult (Department, TotalInterviews, TotalAccepted, TotalRejected) values (@Department, @TotalInterviews, @TotalAccepted, @TotalRejected)", analysisResults);
             }
         }
-
-        // InsertPerson method
-        public void InsertPerson(Person person)
-        {
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                string insertQuery = @"INSERT INTO Person (Name, PhoneNumber, Address, Age, Gender)
-                                       VALUES (@Name, @PhoneNumber, @Address, @Age, @Gender);";
-                //complete the query
-                using (var command = new SQLiteCommand(insertQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@Name", person.Name);
-                    command.Parameters.AddWithValue("@PhoneNumber", person.PhoneNumber);
-                    command.Parameters.AddWithValue("@Address", person.Address);
-                    command.Parameters.AddWithValue("@Age", person.Age);
-                    command.Parameters.AddWithValue("@Gender", person.Gender);
-                }
-            }
-        }
-
-        //InsertInterview method
-        public void InsertInterview(Interview interview)
-        {
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                string insertQuery = @"INSERT INTO Interview (ID, Duration, Date, Location, Result)
-                                       VALUES (@ID, @Duration, @Time, @Location, @Result);";
-                //complete the query
-                using (var command = new SQLiteCommand(insertQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@ID", interview.ID);
-                    command.Parameters.AddWithValue("@Duration", interview.Duration);
-                    command.Parameters.AddWithValue("@Location", interview.Location);
-                    command.Parameters.AddWithValue("@Result", interview.Result);
-                }
-            }
-        }
-
+       
     }
+          
 }
+   
+
+    
+

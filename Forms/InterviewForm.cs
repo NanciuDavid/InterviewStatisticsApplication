@@ -9,8 +9,6 @@ namespace PROIECTWAP.Forms
     public partial class InterviewForm : Form
     {
         private List<Interview> interviews;
-        static string dbFilePath = "DemoDB.db";
-        private static SqliteDataAccess dataAccess = new SqliteDataAccess(dbFilePath);
 
         public InterviewForm()
         {
@@ -99,12 +97,20 @@ namespace PROIECTWAP.Forms
 
             try
             {
-                int interviewID = int.Parse(textBox1.Text);
+                // Parse input data
+                int interviewID;
+                if (!int.TryParse(textBox1.Text, out interviewID))
+                {
+                    MessageBox.Show("Please enter a valid ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 string interviewDuration = textBox2.Text;
                 string interviewTime = dateTimePicker1.Value.ToShortTimeString(); // Ensure you're using Value property
                 string interviewLocation = textBox3.Text;
                 string interviewResult = radioButton1.Checked ? "Accepted" : "Rejected";
 
+                // Create new interview object
                 Interview newInterview = new Interview
                 {
                     ID = interviewID,
@@ -114,17 +120,15 @@ namespace PROIECTWAP.Forms
                     Result = interviewResult
                 };
 
-                //add the interview to the database
-                dataAccess.InsertInterview(newInterview);
-
-
+                // Add the interview to the list and database
                 interviews.Add(newInterview);
+                SqliteDataAccess.InsertInterview(newInterview);
 
                 // Refresh the DataGridView
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = interviews;
 
-                // Clear the text boxes and reset controls
+                // Clear the input fields and reset controls
                 textBox1.Text = "";
                 textBox2.Text = "";
                 textBox3.Text = "";
@@ -133,9 +137,9 @@ namespace PROIECTWAP.Forms
                 dateTimePicker1.Value = DateTime.Now;
                 textBox1.Focus();
             }
-            catch (FormatException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Please enter valid data: " + ex.Message);
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
