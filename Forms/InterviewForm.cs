@@ -96,37 +96,6 @@ namespace PROIECTWAP.Forms
                 MessageBox.Show("Please fill all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //ID to be unique
-            foreach (Interview interview in interviews)
-            {
-                if (interview.ID == int.Parse(textBox1.Text))
-                {
-                    MessageBox.Show("ID already exists. Please enter a different ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-
-            //duration to be integer and positive and not null and not empty string
-            if (string.IsNullOrEmpty(textBox2.Text) || !int.TryParse(textBox2.Text, out int duration) || duration <= 0)
-            {
-                MessageBox.Show("Please enter a valid duration.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            //date to be in past or present
-
-            if (dateTimePicker1.Value.Date > DateTime.Now.Date)
-            {
-                MessageBox.Show("Please enter a valid date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            //feedback to be selected
-            if (!radioButton1.Checked && !radioButton2.Checked)
-            {
-                MessageBox.Show("Please select a feedback.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
             try
             {

@@ -86,23 +86,6 @@ namespace PROIECTWAP.Forms
                 MessageBox.Show("Please fill all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //numeric data to be positive, passed interviews + failed interviews <= total interviews
-            if (int.Parse(textBox2.Text) < 0 || int.Parse(textBox3.Text) < 0 || int.Parse(textBox4.Text) < 0 || int.Parse(textBox3.Text) + int.Parse(textBox4.Text) > int.Parse(textBox2.Text))
-            {
-                MessageBox.Show("Please enter valid data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            //department to be unique
-
-            foreach (AnalysisResult result in results)
-            {
-                if (result.Department == textBox1.Text)
-                {
-                    MessageBox.Show("Department already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
 
             try
             {
@@ -275,7 +258,5 @@ namespace PROIECTWAP.Forms
             MessageBox.Show("Data exported successfully to results.txt", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-
-       
     }
 }

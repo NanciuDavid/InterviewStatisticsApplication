@@ -99,18 +99,11 @@ namespace PROIECTWAP.Forms
                 return;
             }
 
-            // Age validation between 18 and 80
-            if (int.Parse(textBox4.Text) < 18 || int.Parse(textBox4.Text) > 80)
+            // Age validation
+            if (int.Parse(textBox4.Text) < 18)
             {
-                MessageBox.Show("Age must be between 18 and 80", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Age must be greater than 18", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-             
-
-            //Gender validation
-            if (!radioButton1.Checked && !radioButton2.Checked)
-            {
-                MessageBox.Show("Please choose gender ! ");
             }
 
             // Add a new person to the list

@@ -21,13 +21,7 @@ namespace PROIECTWAP
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             string githubUrl = "https://github.com/NanciuDavid";
-
-
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = githubUrl,
-                UseShellExecute = true
-            });
+            Process.Start(githubUrl);
         }
     }
 }

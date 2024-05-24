@@ -35,6 +35,7 @@
             btnInterview = new Button();
             btnPerson = new Button();
             panelLogo = new Panel();
+            githubPicture = new PictureBox();
             panelTitleBar = new Panel();
             btnMinimize = new Button();
             btnMaximize = new Button();
@@ -43,9 +44,9 @@
             lblTitle = new Label();
             panelDesktop = new Panel();
             pictureBox1 = new PictureBox();
-            githubRedirect1 = new GithubRedirect();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)githubPicture).BeginInit();
             panelTitleBar.SuspendLayout();
             panelDesktop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -148,13 +149,25 @@
             // panelLogo
             // 
             panelLogo.BackColor = Color.FromArgb(39, 39, 58);
-            panelLogo.Controls.Add(githubRedirect1);
+            panelLogo.Controls.Add(githubPicture);
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
             panelLogo.Name = "panelLogo";
             panelLogo.Padding = new Padding(12, 0, 0, 0);
             panelLogo.Size = new Size(220, 80);
             panelLogo.TabIndex = 0;
+            // 
+            // githubPicture
+            // 
+            githubPicture.BackgroundImageLayout = ImageLayout.None;
+            githubPicture.Image = (Image)resources.GetObject("githubPicture.Image");
+            githubPicture.Location = new Point(39, 12);
+            githubPicture.Name = "githubPicture";
+            githubPicture.Size = new Size(100, 50);
+            githubPicture.SizeMode = PictureBoxSizeMode.Zoom;
+            githubPicture.TabIndex = 0;
+            githubPicture.TabStop = false;
+            githubPicture.Click += githubPicture_Click;
             // 
             // panelTitleBar
             // 
@@ -261,13 +274,6 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // githubRedirect1
-            // 
-            githubRedirect1.Location = new Point(15, -34);
-            githubRedirect1.Name = "githubRedirect1";
-            githubRedirect1.Size = new Size(150, 150);
-            githubRedirect1.TabIndex = 0;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -283,6 +289,7 @@
             Text = "Form1";
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)githubPicture).EndInit();
             panelTitleBar.ResumeLayout(false);
             panelTitleBar.PerformLayout();
             panelDesktop.ResumeLayout(false);
@@ -301,12 +308,12 @@
         private Panel panelTitleBar;
         private Label label1;
         private Label lblTitle;
+        private PictureBox githubPicture;
         private Panel panelDesktop;
         private Button btnCloseChild;
         private PictureBox pictureBox1;
         private Button btnClose;
         private Button btnMinimize;
         private Button btnMaximize;
-        private GithubRedirect githubRedirect1;
     }
 }
